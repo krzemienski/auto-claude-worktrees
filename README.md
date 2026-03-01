@@ -168,6 +168,23 @@ This tool is part of a blog series on building software with AI agents at scale:
 3. **Auto-Claude Worktrees** (this repo)
 4. [Multi-Agent Consensus](https://github.com/krzemienski/multi-agent-consensus)
 
+## Troubleshooting
+
+### `pip install -e .` fails
+Ensure you're using Python 3.10+ and the build backend is `setuptools.build_meta` in `pyproject.toml`.
+
+### `auto-claude` command not found after install
+Activate your virtual environment, or install with `pip install -e .` in a venv. The entry point is defined in `[project.scripts]`.
+
+### Git worktree creation fails
+Ensure you're in a git repository with at least one commit. Worktrees require a valid HEAD reference.
+
+### Claude CLI not found during execution
+Install Claude Code CLI globally: `npm install -g @anthropic-ai/claude-code`. The pipeline spawns `claude` as a subprocess.
+
+### QA review returns parsing errors
+The QA agent expects pure JSON output. If Claude returns markdown-wrapped JSON, the parser strips ` ```json ` fences automatically. Check that `--print` mode is being used.
+
 ## License
 
 MIT
