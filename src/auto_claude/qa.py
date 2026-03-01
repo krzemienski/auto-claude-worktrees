@@ -17,6 +17,7 @@ import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
+from . import factory
 from .config import PipelineConfig
 from .models import QAResult, QAVerdict, TaskStatus, WorktreeState
 
@@ -271,7 +272,7 @@ Fix ALL issues listed above. Then commit your changes and update COMPLETION.md.
     cmd = [
         "claude", "--print",
         "--model", config.model,
-        "--system-prompt", EXECUTION_SYSTEM_PROMPT,
+        "--system-prompt", factory.EXECUTION_SYSTEM_PROMPT,
         fix_prompt,
     ]
 
