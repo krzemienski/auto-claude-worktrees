@@ -1,0 +1,31 @@
+# Auto-Claude Default Configuration
+# Override per-project with .auto-claude.toml in repo root
+
+[pipeline]
+max_parallel_workers = 4
+model = "sonnet"
+qa_model = "opus"
+timeout_seconds = 600
+max_retries = 2
+worktree_base_dir = ".worktrees"
+specs_dir = "specs"
+output_dir = ".auto-claude"
+
+[qa]
+criteria = [
+    "All acceptance criteria from the spec are met",
+    "No regressions introduced in existing functionality",
+    "Code quality meets project standards (formatting, naming, structure)",
+    "No hardcoded values that should be configurable",
+    "Error handling is present for failure paths",
+]
+
+[ideation]
+model = "opus"
+max_tasks = 200
+include_patterns = ["**/*.py", "**/*.ts", "**/*.js", "**/*.swift", "**/*.go", "**/*.rs"]
+exclude_patterns = ["node_modules/**", ".git/**", "__pycache__/**", ".venv/**", "dist/**", "build/**"]
+
+[merge]
+strategy = "priority-weighted"
+auto_resolve_conflicts = false
