@@ -1,0 +1,37 @@
+flowchart TD
+    subgraph INPUT["QA-Approved Branches"]
+        T1["auth-refactor\nCRITICAL\ndeps: none\nscope: 3 files"]
+        T2["error-handling\nHIGH\ndeps: auth-refactor\nscope: 8 files"]
+        T3["add-logging\nMEDIUM\ndeps: none\nscope: 2 files"]
+        T4["api-docs\nMEDIUM\ndeps: error-handling\nscope: 5 files"]
+        T5["perf-cache\nMEDIUM\ndeps: none\nscope: 12 files"]
+        T6["ui-polish\nLOW\ndeps: none\nscope: 4 files"]
+    end
+
+    subgraph TOPOSORT["Topological Sort + Priority Weight"]
+        SORT["1. Group by priority tier\n2. Within tier: narrower scope first\n3. Visit dependencies before dependents\n4. Circular deps: warn + skip"]
+    end
+
+    subgraph QUEUE["Merge Order (computed)"]
+        M1["1. auth-refactor (CRITICAL, 3 files)"]
+        M2["2. add-logging (MEDIUM, 2 files)"]
+        M3["3. error-handling (HIGH, 8 files, dep: auth-refactor)"]
+        M4["4. api-docs (MEDIUM, 5 files, dep: error-handling)"]
+        M5["5. perf-cache (MEDIUM, 12 files)"]
+        M6["6. ui-polish (LOW, 4 files)"]
+    end
+
+    subgraph MERGE["Merge Execution"]
+        DRY["Dry-run: git merge --no-commit --no-ff"]
+        CHECK{"Conflicts?"}
+        APPLY["git merge --no-ff -m 'auto-claude: ...'"]
+        ABORT["git merge --abort"]
+        FLAG["Mark MERGE_CONFLICT\nRe-enter pipeline"]
+        NEXT["Next branch"]
+
+        DRY --> CHECK
+        CHECK -->|"No"| APPLY --> NEXT
+        CHECK -->|"Yes"| ABORT --> FLAG
+    end
+
+    INPUT --> TOPOSORT --> QUEUE --> MERGE
