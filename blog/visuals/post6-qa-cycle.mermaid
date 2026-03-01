@@ -1,0 +1,14 @@
+flowchart TD
+    EXEC["Execution Agent"]
+    WORK["Completed Work"]
+    QA["QA Agent\n(separate)"]
+    VERDICT{"Verdict?"}
+    MERGE["Merge Queue"]
+    DISCARD["Discard"]
+
+    EXEC --> WORK --> QA --> VERDICT
+    VERDICT -->|"Approved"| MERGE
+    VERDICT -->|"Rejected with Fixes"| EXEC
+    VERDICT -->|"Rejected Permanent"| DISCARD
+
+    EXEC -.->|"max_retries: 2"| QA

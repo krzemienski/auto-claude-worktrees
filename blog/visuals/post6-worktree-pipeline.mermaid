@@ -1,0 +1,27 @@
+flowchart LR
+    subgraph S1["Stage 1"]
+        A["Ideate\n194 tasks"]
+        A_op["Claude analyzes codebase"]
+    end
+
+    subgraph S2["Stage 2"]
+        B["Spec Gen\n91 specs"]
+        B_op["Task to acceptance criteria"]
+    end
+
+    subgraph S3["Stage 3"]
+        C["Worktree Factory\n71 worktrees"]
+        C_op["git worktree add + agent spawn"]
+    end
+
+    subgraph S4["Stage 4"]
+        D["QA Review\n71 reports"]
+        D_op["Independent reviewer vs spec"]
+    end
+
+    subgraph S5["Stage 5"]
+        E["Merge Queue\n~60 merged"]
+        E_op["Priority-weighted toposort"]
+    end
+
+    A --> B --> C --> D --> E
