@@ -1,5 +1,19 @@
 # Auto-Claude Worktrees
 
+[![Featured in Agentic Development Blog — Post #6](https://img.shields.io/badge/Agentic%20Development%20Blog-Post%20%236-blue)](https://github.com/krzemienski/agentic-development-guide)
+
+## Related Post
+
+**Featured in the Agentic Development Blog series — Post #6: 194 Parallel AI Worktrees**
+
+- Send date: Thu Jun 4, 2026
+- LinkedIn: _link added on send day_
+- Canonical blog post: https://ai.hack.ski/blog/<slug-set-on-send-day>
+- Series hub: [agentic-development-guide](https://github.com/krzemienski/agentic-development-guide)
+
+---
+
+
 **Automated parallel AI development using git worktrees.**
 
 A CLI tool that ideates tasks, generates implementation specs, spins up isolated git worktrees with independent Claude agents, and runs automated QA — all in parallel.
