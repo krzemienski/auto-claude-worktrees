@@ -1,4 +1,12 @@
-# Auto-Claude Worktrees
+# Auto Claude Worktrees
+
+> Python parallel worktree factory — 18,945 isolated agent sessions from one repo.
+
+Live site: [withagents.dev/posts/post-06-parallel-worktrees](https://withagents.dev/posts/post-06-parallel-worktrees)
+Field journal entry: [withagents.dev/posts/post-06-parallel-worktrees](https://withagents.dev/posts/post-06-parallel-worktrees)
+
+---
+
 
 [![Featured in Agentic Development Blog — Post #6](https://img.shields.io/badge/Agentic%20Development%20Blog-Post%20%236-blue)](https://github.com/krzemienski/agentic-development-guide)
 
